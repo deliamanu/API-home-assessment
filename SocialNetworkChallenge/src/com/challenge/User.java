@@ -1,9 +1,10 @@
 package com.challenge;
 
 /**
- * This class represents a user in a social network with a name
- *  **/
-public class User {
+ * This class represents a user in a social network with a name.
+ * Every user needs to be unique => their names have to be unique
+ **/
+public class User implements Comparable<User>{
     String name;
 
     public User(String name) {
@@ -52,5 +53,10 @@ public class User {
     @Override
     public String toString() {
         return this.name;
+    }
+
+    @Override
+    public int compareTo(User o) {
+        return 0;
     }
 }

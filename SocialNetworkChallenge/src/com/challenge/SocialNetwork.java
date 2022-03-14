@@ -6,7 +6,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * This class represents a social network with users and the list of friends of every user if it has one
+ * This class represents a social network with users and the list of friends of every user if it has one.
+ * Everytime a user is added to the social network, I made functions that will check if the user is unique
+ * and if the user is added like a friend for another user, I made functions that will check if the friend is in the social network
+ * and if it is not already in the list of friends.
  */
 public class SocialNetwork {
     Map<User, List<User>> users = new HashMap<>();
@@ -73,13 +76,21 @@ public class SocialNetwork {
         return false;
     }
 
+    public boolean isFriend(User friend, User user) {
+        for(User key : this.users.get(user)) {
+            if(key.equals(friend)) {
+                return true;
+            }
+        }
+        return false;
+    }
     public void addFriends(User user, List<User> friends) {
         int duplicateFriend = 0;
         if(isUser(user)) {
             if (areUniqueUsers(friends)) {
                 for(User friend : friends) {
-                    if(!isUser(friend) || user.equals(friend)) {
-                        System.out.println(friend + " is not a user. You cannot add a non user friend or is the same with user.");
+                    if(!isUser(friend) || user.equals(friend) || isFriend(friend, user)) {
+                        System.out.println(friend + " is not a user. You cannot add a non user friend, an existing friend or is the same with user.");
                         duplicateFriend = 1;
                         break;
                     }
@@ -97,12 +108,12 @@ public class SocialNetwork {
     }
 
     public void addFriend(User user, User friend) {
-        if(isUser(user) && isUser(friend) && !user.equals(friend)) {
+        if(isUser(user) && isUser(friend) && !user.equals(friend) && !isFriend(friend, user)) {
             this.users.get(user).add(friend);
             this.users.put(user, this.users.get(user));
             System.out.println(friend + " was added as a friend to " + user);
         } else {
-            System.out.println("The user or the friend doesn't exist or the friend is equal with the user");
+            System.out.println("The user or the friend doesn't exist, the friend is equal with the user or the friend is already a friend of user");
         }
     }
 }

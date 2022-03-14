@@ -3,59 +3,25 @@ package com.challenge;
 import java.util.*;
 
 public class Main {
-
+    /**
+     * In main I made different tests for the algorithm that computes the length of the shortest chain of friends between A(first user) and B(second user)
+     */
     public static void main(String[] args) {
-        User user1 = new User("delia");
-        User user2 = new User("vlad-adrian");
-        User user3 = new User("pavel");
-        User user4 = new User("simona2");
-        User user5 = new User("adriana");
-        User user6 = new User("cristi10");
-
-        List<User> users = new ArrayList<>();
-        users.add(user1);
-        users.add(user2);
-        users.add(user3);
-        users.add(user4);
-        users.add(user5);
-        users.add(user6);
-        users.add(new User("ruxi21"));
-
-        SocialNetwork socialNetwork = new SocialNetwork(users);
-        socialNetwork.addUser(new User("Iulian44"));
-        socialNetwork.addUser(new User("delia"));
-        users.add(user2);
-        socialNetwork.addUsers(users);
-
-        socialNetwork.addFriend(user1, user2);
-        socialNetwork.addFriend(user1, user3);
-        socialNetwork.addFriends(new User("maria"), users);
-        socialNetwork.addFriend(user2, user2);
-
-        /**
-         * This is an example of a social network with friends and on this social network the function will be tested
-         */
-        SocialNetwork socialNetworkInput = makeSocialNetwork();
-        User firstUser = new User("delia");
-        User secondUser = new User("vladut");
-    }
-
-    public static SocialNetwork makeSocialNetwork() {
-
-        User user1 = new User("maria123");
-        User user2 = new User("dog2000");
-        User user3 = new User("dan40");
+        User user1 = new User("maria");
+        User user2 = new User("david");
+        User user3 = new User("dana1");
         User user4 = new User("delia");
-        User user5 = new User("pavel2");
-        User user6 = new User("ana");
+        User user5 = new User("pavel3");
+        User user6 = new User("ana00");
         User user7 = new User("cristi");
-        User user8 = new User("joe1994");
+        User user8 = new User("joe194");
         User user9 = new User("simona");
-        User user10 = new User("louis3");
+        User user10 = new User("louis");
         User user11 = new User("vladut");
-        User user12 = new User("adrian8");
+        User user12 = new User("adi100");
+        User user13 = new User("nofriend");
 
-        List<User> list = List.of(user1, user2, user3, user4, user5, user6, user7, user8, user9, user10,user11,user12);
+        List<User> list = List.of(user1, user2, user3, user4, user5, user6, user7, user8, user9, user10,user11,user12,user13);
         SocialNetwork socialNetwork = new SocialNetwork(list);
 
         socialNetwork.addFriends(user1, List.of(user2, user4));
@@ -71,7 +37,23 @@ public class Main {
         socialNetwork.addFriends(user11, List.of(user12, user5));
         socialNetwork.addFriends(user12, List.of(user11, user9, user6));
 
-        return socialNetwork;
+        System.out.println("====================");
+
+        System.out.println("The length of the shortest chain of friends between: ");
+        ShortestChain example1 = new ShortestChain(user4, user11, socialNetwork);
+        System.out.println(user4 + " and " + user11 + "--->" + example1.getShortestChainLength());
+        ShortestChain example2 = new ShortestChain(user2, user8, socialNetwork);
+        System.out.println(user2 + " and " + user8 + "--->" + example2.getShortestChainLength());
+        ShortestChain example3 = new ShortestChain(user6, user10, socialNetwork);
+        System.out.println(user6 + " and " + user10 + "--->" + example3.getShortestChainLength());
+        ShortestChain example4 = new ShortestChain(user5, user12, socialNetwork);
+        System.out.println(user5 + " and " + user12 + "--->" + example4.getShortestChainLength());
+        ShortestChain example5 = new ShortestChain(user1, user12, socialNetwork);
+        System.out.println(user1 + " and " + user12 + "--->" + example5.getShortestChainLength());
+        ShortestChain example6 = new ShortestChain(user13, user1, socialNetwork);
+        System.out.println(user13 + " and " + user1 + "--->" + example6.getShortestChainLength());
     }
+
+
 
 }
