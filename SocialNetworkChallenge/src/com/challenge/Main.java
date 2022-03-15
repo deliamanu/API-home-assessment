@@ -57,13 +57,12 @@ public class Main {
         ShortestChain example7 = new ShortestChain(user13, noUser, socialNetwork);
         /**
          * Input validation tests
-          */
+         */
         socialNetwork.addUser(new User("delia"));
         socialNetwork.addUsers(List.of(new User("maria"), new User("liliana")));
         socialNetwork.addFriend(user1, new User("roger"));
         socialNetwork.addFriends(user4, List.of(new User("stewie"), new User("Stefan")));
         socialNetwork.addFriend(user3, user6);
-
     }
 
 }
