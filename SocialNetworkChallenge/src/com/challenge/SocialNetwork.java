@@ -31,11 +31,20 @@ public class SocialNetwork {
     }
 
     public void addUsers(List<User> users) {
+        int add = 0;
         if(areUniqueUsers(users)) {
             for(User user : users) {
-                this.users.put(user, new ArrayList<User>());
+                if(isUser(user)) {
+                    System.out.println("This list contains a user that already exists with the same name");
+                    add = 1;
+                    break;
+                } else {
+                    this.users.put(user, new ArrayList<User>());
+                }
             }
-            System.out.println("The list with users has been added.");
+            if(add == 0) {
+                System.out.println("The list with users has been added.");
+            }
         } else {
             System.out.println("This list contains users with the same name");
         }

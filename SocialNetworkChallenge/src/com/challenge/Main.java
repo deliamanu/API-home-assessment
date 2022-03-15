@@ -52,8 +52,18 @@ public class Main {
         System.out.println(user1 + " and " + user12 + "--->" + example5.getShortestChainLength());
         ShortestChain example6 = new ShortestChain(user13, user1, socialNetwork);
         System.out.println(user13 + " and " + user1 + "--->" + example6.getShortestChainLength());
+
+        User noUser = new User("nouser");
+        ShortestChain example7 = new ShortestChain(user13, noUser, socialNetwork);
+        /**
+         * Input validation tests
+          */
+        socialNetwork.addUser(new User("delia"));
+        socialNetwork.addUsers(List.of(new User("maria"), new User("liliana")));
+        socialNetwork.addFriend(user1, new User("roger"));
+        socialNetwork.addFriends(user4, List.of(new User("stewie"), new User("Stefan")));
+        socialNetwork.addFriend(user3, user6);
+
     }
-
-
 
 }
